@@ -1,4 +1,5 @@
 import { useState } from "react"
+import userService from "../../utils/userService"; //we want to call the signup function to make the post request to server
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import {
     Button,
@@ -18,17 +19,27 @@ export default function SignUpPage(){
         passwordConf: ''
     });
 
-    const [error, setError] = useState('');
+    const [error, setError] = useState(''); //good to have error message
 
     function handleChange(e){
-        setState({
-            ...state,
-            [e.target.name]: e.target.value
+        setState({ 
+            ...state, //emptys previous value and
+            [e.target.name]: e.target.value //update whatever key was written in
         })
     }
 
     async function handleSubmit(e){
         e.preventDefault();
+        try{
+            //this makes the fetch request to server
+            //calling the signup fetch function in our utils/userservice
+            //and sends out state object
+            const signUp= await userService.signup(state)
+            console.log(signUp)
+        }catch(err){
+            console.log(err, 'error in handleSubmit');
+            setError('Check your terminal and chrome console!')
+        }
     }
 
     return(

@@ -6,13 +6,13 @@ module.exports = {
   signup,
   login
 };
-
+//this is server side code
 async function signup(req, res) {
   const user = new User(req.body);
   try {
     await user.save();
     const token = createJWT(user);
-    res.json({ token });
+    res.json({ token }); //step 3 in the flow token-based authentication chart
   } catch (err) {
     // Probably a duplicate email
     res.status(400).json(err);

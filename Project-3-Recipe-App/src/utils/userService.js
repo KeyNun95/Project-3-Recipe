@@ -1,11 +1,16 @@
 import tokenService from './tokenService';
-
+//we are getting this url from the .use in the server
 const BASE_URL = '/api/users/';
-
+//client side code
 function signup(user) {
+  //we dont want fetch to occur until we call the function which is why we need "return" here
+  //this fetch request is making an http POST request to server to run controller function in routes/users file
+  //router.post "/signup" to trying to communicate to usersCtrl.signup
   return fetch(BASE_URL + 'signup', {
     method: 'POST',
+    //we have to tell the api he data we are sending so we need this header
     headers: new Headers({'Content-Type': 'application/json'}),  // If you are sending a file/photo over
+    //this is the context of the form we are sending to server. We are changing the info in state into json
     // what do datatype do you need to change this too?
     body: JSON.stringify(user)
   })
@@ -17,7 +22,7 @@ function signup(user) {
   // Parameter destructuring!
   .then(({token}) => tokenService.setToken(token));
   // The above could have been written as
-  //.then((token) => token.token);
+  //.then((token) => token.token); this sets the token in the browser
 }
 
 function getUser() {
@@ -43,6 +48,7 @@ function login(creds) {
 }
 
 export default {
+  //these are the key-value pairs being exported ex: signup:signup
   signup, 
   getUser,
   logout,
