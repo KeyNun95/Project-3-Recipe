@@ -1,7 +1,8 @@
 import React from 'react';
 import './LoginPage.css';
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import userService from '../../utils/userService';
+import { Link, useNavigate } from 'react-router-dom'
 
 import {
   Button,
@@ -14,17 +15,28 @@ import {
   } from "semantic-ui-react"
 
 
-export default function LoginPage(props){
+export default function LoginPage({handleSignUpOrLogIn}){
 
   const [state, setState] = useState({
     email: '',
     password: ''
   })
 
+  const navigate = useNavigate();
+
   const [error, setError] = useState('')
 
   async function handleSubmit(e){
     e.preventDefault();
+    try {
+      const logIn = await userService.login(state)
+      console.log(logIn)
+      navigate('/') //navigate to homepage
+      handleSignUpOrLogin();
+    }catch(err){
+      console.log(err)
+      setError('check terminal and console for logIn error')
+    }
   }
 
   function handleChange(e){

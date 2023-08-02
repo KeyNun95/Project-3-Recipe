@@ -8,11 +8,11 @@ function signup(user) {
   //router.post "/signup" to trying to communicate to usersCtrl.signup
   return fetch(BASE_URL + 'signup', {
     method: 'POST',
-    //we have to tell the api he data we are sending so we need this header
-    headers: new Headers({'Content-Type': 'application/json'}),  // If you are sending a file/photo over
+    //we have to tell the api he data we are sending so we need this header, except it is a file/photo
+    //the browser will deetct the request and apply the proper headers
+    // headers: new Headers({'Content-Type': 'application/json'}),
     //this is the context of the form we are sending to server. We are changing the info in state into json
-    // what do datatype do you need to change this too?
-    body: JSON.stringify(user)
+    body: user //no need for jsonify if formdata
   })
   .then(res => {
     if (res.ok) return res.json();

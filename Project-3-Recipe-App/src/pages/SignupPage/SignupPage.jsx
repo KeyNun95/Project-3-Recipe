@@ -11,7 +11,11 @@ import {
     Segment,
     } from "semantic-ui-react";
 
-export default function SignUpPage(){
+ //this hook changes url we are on
+ import { useNavigate } from 'react-router-dom'
+
+ //handleSignUpOrLogin is from the function in the app compopent. function name becomes a prop
+export default function SignUpPage({handleSignUpOrLogin}){
     const [state, setState] = useState({
         username: '',
         email: '',
@@ -19,7 +23,12 @@ export default function SignUpPage(){
         passwordConf: ''
     });
 
+    //this state handles file upload
+    const [fileInput, setFileInput] = useState('');
+
     const [error, setError] = useState(''); //good to have error message
+
+    const navigate = useNavigate();
 
     function handleChange(e){
         setState({ 
@@ -30,16 +39,34 @@ export default function SignUpPage(){
 
     async function handleSubmit(e){
         e.preventDefault();
+
+        //send file to server after changing data to formdata
+        const formData = new FormData();
+        //key for my req.file in this case is 'photo'
+        formData.append('photo', fileInput);
+        //the rest of th body
+        formData.append('username', state.username)
+        formData.append('email', state.email)
+        formData.append('password', state.password)
+        //we are grabbing the pieces of state that we want to send over and using them as the value
+
         try{
             //this makes the fetch request to server
             //calling the signup fetch function in our utils/userservice
             //and sends out state object
-            const signUp= await userService.signup(state)
+            const signUp= await userService.signup(formData)
             console.log(signUp)
+            //navigate user to homepage after pressing submit to signup
+            navigate('/');
+            handleSignUpOrLogin(); //we are calling the prop in the very first function and setting the user
         }catch(err){
             console.log(err, 'error in handleSubmit');
             setError('Check your terminal and chrome console!')
         }
+    };
+
+    function handleFileInput(e){
+        setFileInput(e.target.files[0])
     }
 
     return(
@@ -85,6 +112,7 @@ export default function SignUpPage(){
                                 type="file"
                                 name="photo"
                                 placeholder="upload image"
+                                onChange={handleFileInput}
                             />
                         </Form.Field>
                         <Button type="submit" className="btn">
