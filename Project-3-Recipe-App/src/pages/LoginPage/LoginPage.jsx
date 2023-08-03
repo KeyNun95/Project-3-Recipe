@@ -32,7 +32,7 @@ export default function LoginPage({handleSignUpOrLogIn}){
       const logIn = await userService.login(state)
       console.log(logIn)
       navigate('/') //navigate to homepage
-      handleSignUpOrLogin();
+      handleSignUpOrLogIn();
     }catch(err){
       console.log(err)
       setError('check terminal and console for logIn error')

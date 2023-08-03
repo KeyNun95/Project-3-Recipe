@@ -28,7 +28,7 @@ async function signup(req, res) {
   s3.upload(params, async function(err, data){
     if(err){
       console.log('check error')
-      console.log(err, '<--- error from aws. keys might not be correct')
+      console.log(err, '<--- error from aws. keys might not be correct in users/controllers')
       res.status(400).json({error: 'error from aws, check terminal'})
     }
     //if s3 upload was successful, create the user and store the file location

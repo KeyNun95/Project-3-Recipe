@@ -3,12 +3,12 @@ import RecipeForm from "../../components/RecipeForm/RecipeForm"
 import PageHeader from "../../components/Header/Header"
 import { Grid } from "semantic-ui-react"
 
-export default function FeedPage(){
+export default function FeedPage({handleLogout}){
     return(
     <Grid centered>
         <Grid.Row>
             <Grid.Column>
-                <PageHeader />
+                <PageHeader handleLogout={handleLogout}/>
             </Grid.Column>
         </Grid.Row>
         <Grid.Row>

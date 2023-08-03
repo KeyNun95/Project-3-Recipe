@@ -38,7 +38,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<FeedPage/>} />
+      <Route path="/" element={<FeedPage handleLogout={handleLogout}/>} />
       <Route path="/login" element={<LoginPage handleSignUpOrLogIn={handleSignUpOrLogin}/>} />
       <Route path="/signup" element={<SignUpPage handleSignUpOrLogIn={handleSignUpOrLogin}/>} />
     </Routes>
