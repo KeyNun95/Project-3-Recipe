@@ -1,8 +1,9 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { useState } from "react";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignupPage/SignupPage";
+import FeedPage from "./pages/FeedPage/FeedPage";
 import userService from "./utils/userService";
 
 //any component rendered by a route goes in the pages folder
@@ -37,7 +38,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<h1>Home Pageeeeeeeeeee</h1>} />
+      <Route path="/" element={<FeedPage/>} />
       <Route path="/login" element={<LoginPage handleSignUpOrLogIn={handleSignUpOrLogin}/>} />
       <Route path="/signup" element={<SignUpPage handleSignUpOrLogIn={handleSignUpOrLogin}/>} />
     </Routes>
