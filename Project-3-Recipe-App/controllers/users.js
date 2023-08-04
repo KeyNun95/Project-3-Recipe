@@ -13,9 +13,23 @@ const BUCKET_NAME = process.env.BUCKET_NAME
 
 module.exports = {
   signup,
-  login
+  login,
+  profile
 };
 //this is server side code
+async function profile(req, res) {
+  try{
+    const user = await User.findOne({username:req.params.username})
+    if(!user) return res.status(404).json({error: 'User not found'})
+    const posts = await post.find({user: user._id}).populate("user").exec();
+    console.log(posts, 'this posts')
+    res.status(200).json({posts: posts, user: user})
+  }catch(err){
+    console.log(err)
+    res.status(400).json({err})
+  }
+}
+
 async function signup(req, res) {
   console.log(req.body, req.file, 'req.body', 'req.file');
   //this will check if there is a file and send back an error if empty

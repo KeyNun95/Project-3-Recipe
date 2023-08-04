@@ -4,6 +4,7 @@ import { useState } from "react";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignupPage/SignupPage";
 import FeedPage from "./pages/FeedPage/FeedPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import userService from "./utils/userService";
 
 //any component rendered by a route goes in the pages folder
@@ -41,6 +42,7 @@ function App() {
       <Route path="/" element={<FeedPage handleLogout={handleLogout}/>} />
       <Route path="/login" element={<LoginPage handleSignUpOrLogIn={handleSignUpOrLogin}/>} />
       <Route path="/signup" element={<SignUpPage handleSignUpOrLogIn={handleSignUpOrLogin}/>} />
+      <Route path="/:username" element={<ProfilePage />} />
     </Routes>
   );
 }
