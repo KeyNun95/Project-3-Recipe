@@ -7,7 +7,8 @@ const s3 = new S3();
 const BUCKET_NAME = process.env.BUCKET_NAME;
 
 module.exports = {
-    create
+    create,
+    index
 };
 
 function create(req, res){
@@ -36,4 +37,11 @@ function create(req, res){
             res.status(400).json({ error: err })
         }
     });
+}
+
+async function index(req, res){
+    try{
+        const posts = await Post.find({}).populate("user").exec();
+        res.render(200).json({posts});
+    }catch(err){}
 }
