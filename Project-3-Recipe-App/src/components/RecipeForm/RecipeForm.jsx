@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
 
-export default function RecipeForm(){
+export default function RecipeForm({handleAddPost}){
 //STEP 2: set up useState for the form
     const [state, setState] = useState({
         recipeTitle: '',
@@ -19,11 +19,21 @@ export default function RecipeForm(){
         })
     }
 //STEP 5: write function that handles change in form for file
+//CHECK STATE IS WORKING AFTER STEP 5 IN DEV TOOLS
     function handleFileInput(e){
         setSelectedFile(e.target.files[0])
     }
-
+//when we submit this form we are making a post request to the router and server
+//STEP 6: since we are sending a file, prepare object as formdata for server
+//continue in postApi.js
     function handleSubmit(e){
+        const formData = new FormData()
+        formData.append('recipeTitle', state.recipeTitle)
+        formData.append('ingredientList', state.ingredientList)
+        formData.append('direction', state.direction)
+        formData.append('photo', selectedFile)
+        //call prop handleAddPost to call our postApi.create function
+        handleAddPost(formData)
     }
 //STEP 1: set up UI
     return(

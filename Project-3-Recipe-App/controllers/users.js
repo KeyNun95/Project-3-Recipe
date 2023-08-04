@@ -4,7 +4,7 @@ const SECRET = process.env.SECRET;
 
 //helps generate random numbers for filename so every file is unique
 //uuid is the name of the module, and uuidv4 is the name of the funciton we are importing
-const { v4: uuid4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 //import the s3 constructor
 const S3 = require('aws-sdk/clients/s3');
 //initialize the S3 constructor so we have an object to talk to aws

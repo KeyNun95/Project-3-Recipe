@@ -22,7 +22,11 @@ app.use(express.json());
 // the user information to req.user
 app.use(require("./config/auth"));
 // api routes must be before the "catch all" route
+//require("./routes/filename") is similar to
+//const filenameRouter = require("./routes/api/filename") and
+//app.use("/api/filename", filenameRouter)
 app.use("/api/users", require("./routes/users"));
+app.use("/api/posts", require("./routes/posts"));
 
 // "catch all" route
 app.get('/*', function(req, res) {
