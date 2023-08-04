@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RecipeGallery from "../../components/RecipeGallery/RecipeGallery"
 import RecipeForm from "../../components/RecipeForm/RecipeForm"
 import PageHeader from "../../components/Header/Header"
@@ -18,7 +18,7 @@ export default function FeedPage({handleLogout}){
     //it gets a response from the server and then state is updated
     async function handleAddPost(data){
         try{
-            const responseData = await postApi.creata(data)
+            const responseData = await postApi.create(data)
             console.log(responseData, 'response from server in handleAddpost')
             setPosts([responseData.data, ...posts]);
         }catch(err){
@@ -26,6 +26,22 @@ export default function FeedPage({handleLogout}){
             setError('Error creating a post! please try again')
         }
     }
+
+    //C(R)UD
+    async function getPosts(){
+        try{
+            const responseFromTheServer = await postApi.getAll();
+            console.log(responseFromTheServer)
+            setPosts(responseFromTheServer.posts)
+        }catch(err){
+            console.log(err, 'err in getPosts function on feedpage')
+            setError('error fetching posts, check terminal')
+        }
+    }
+
+    useEffect(() => {
+        getPosts()
+    }, []); //empty array says run one when page is loaded
 
     return(
     <Grid centered>
@@ -41,7 +57,7 @@ export default function FeedPage({handleLogout}){
         </Grid.Row>
         <Grid.Row>
             <Grid.Column style={{ maxWidth: 450 }}>
-                <RecipeGallery />
+                <RecipeGallery posts={posts}/>
             </Grid.Column>
         </Grid.Row>
     </Grid>

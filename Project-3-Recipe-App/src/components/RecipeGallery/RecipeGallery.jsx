@@ -1,5 +1,14 @@
-export default function RecipeGallery(){
+import { Card } from "semantic-ui-react"
+import RecipeCard from "../RecipeCard/RecipeCard"
+
+export default function RecipeGallery({posts}){
+    const recipePosts = posts.map((post) => {
+        return <RecipeCard post={post} key={post._id}/>
+    })
+
     return(
-        <h2>This is all the recipe cards</h2>
+        <Card.Group itemsPerRow={1}>
+            {recipePosts}
+        </Card.Group>
     )
 }
