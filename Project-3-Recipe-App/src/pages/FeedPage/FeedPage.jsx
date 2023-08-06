@@ -5,6 +5,7 @@ import PageHeader from "../../components/Header/Header"
 import { Grid } from "semantic-ui-react"
 //this will import all function from 
 import * as postApi from "../../utils/postApi"
+import * as likeApi from "../../utils/likeApi"
 
 export default function FeedPage({user, handleLogout}){
     //STEP 8:
@@ -43,6 +44,26 @@ export default function FeedPage({user, handleLogout}){
         getPosts()
     }, []); //empty array says run one when page is loaded
 
+    async function addLike(postId){
+        try{
+            const response = await likeApi.create(postId);
+            getPosts();
+        }catch(err){
+            setError('error creating like')
+            console.log(err, 'error')
+        }
+    }
+
+    async function removeLike(likeId){
+        try{
+            const response = await likeApi.removeLike(likeId);
+            getPosts();
+        }catch(err){
+            setError('error creating like')
+            console.log(err, 'error')
+        }
+    }
+
     return(
     <Grid centered>
         <Grid.Row>
@@ -57,7 +78,7 @@ export default function FeedPage({user, handleLogout}){
         </Grid.Row>
         <Grid.Row>
             <Grid.Column style={{ maxWidth: 450 }}>
-                <RecipeGallery posts={posts} user={user}/>
+                <RecipeGallery posts={posts} addLike={addLike} removeLike={removeLike} user={user}/>
             </Grid.Column>
         </Grid.Row>
     </Grid>

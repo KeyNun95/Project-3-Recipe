@@ -1,6 +1,9 @@
 import { Card, Icon, Image } from "semantic-ui-react"
-export default function RecipeCard({post}){
+
+export default function RecipeCard({post, addLike, removeLike, user}){
     const likedIndex = post.likes.findIndex(like => like.username === user.username);
+    const likeColor = likedIndex > -1 ? 'red' : 'grey';
+    const clickHandler = likedIndex > -1 ? () => removeLike(post.likes[likedIndex]._id) : () => addLike(post._id)
     console.log(post);
     return(
         <Card>
@@ -22,7 +25,8 @@ export default function RecipeCard({post}){
             </Card.Description>
         </Card.Content>
         <Card.Content extra textAlign={"right"}>
-            <Icon name={"heart"} size="large" color={"grey"}/>
+            <Icon name={"heart"} size="large" color={likeColor} onClick={() => } />
+            {post.likes.length} Likes
         </Card.Content>
         </Card>
     );
