@@ -1,5 +1,6 @@
 import { Card, Icon, Image } from "semantic-ui-react"
 export default function RecipeCard({post}){
+    const likedIndex = post.likes.findIndex(like => like.username === user.username);
     console.log(post);
     return(
         <Card>

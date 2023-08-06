@@ -6,7 +6,7 @@ import { Grid } from "semantic-ui-react"
 //this will import all function from 
 import * as postApi from "../../utils/postApi"
 
-export default function FeedPage({handleLogout}){
+export default function FeedPage({user, handleLogout}){
     //STEP 8:
     //the reason we are setting posts state is because we can pass that data to the postpage where it will be rendered
     const [posts, setPosts] = useState([]) //array of objects containing likes as well
@@ -18,7 +18,7 @@ export default function FeedPage({handleLogout}){
     //it gets a response from the server and then state is updated
     async function handleAddPost(data){
         try{
-            const responseData = await postApi.create(data)
+            const responseData = await postApi.create(data);
             console.log(responseData, 'response from server in handleAddpost')
             setPosts([responseData.data, ...posts]);
         }catch(err){
@@ -47,7 +47,7 @@ export default function FeedPage({handleLogout}){
     <Grid centered>
         <Grid.Row>
             <Grid.Column>
-                <PageHeader handleLogout={handleLogout}/>
+                <PageHeader handleLogout={handleLogout} user={user}/>
             </Grid.Column>
         </Grid.Row>
         <Grid.Row>
@@ -57,7 +57,7 @@ export default function FeedPage({handleLogout}){
         </Grid.Row>
         <Grid.Row>
             <Grid.Column style={{ maxWidth: 450 }}>
-                <RecipeGallery posts={posts}/>
+                <RecipeGallery posts={posts} user={user}/>
             </Grid.Column>
         </Grid.Row>
     </Grid>

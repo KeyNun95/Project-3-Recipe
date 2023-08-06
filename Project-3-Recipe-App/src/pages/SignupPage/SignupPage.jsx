@@ -15,7 +15,7 @@ import {
  import { useNavigate } from 'react-router-dom'
 
  //handleSignUpOrLogin is from the function in the app compopent. function name becomes a prop
-export default function SignUpPage({handleSignUpOrLogin}){
+export default function SignUpPage(){
     const [state, setState] = useState({
         username: '',
         email: '',
@@ -35,6 +35,10 @@ export default function SignUpPage({handleSignUpOrLogin}){
             ...state, //emptys previous value and
             [e.target.name]: e.target.value //update whatever key was written in
         })
+    }
+
+    function handleFileInput(e){
+        setFileInput(e.target.files[0])
     }
 
     async function handleSubmit(e){
@@ -58,16 +62,14 @@ export default function SignUpPage({handleSignUpOrLogin}){
             console.log(signUp)
             //navigate user to homepage after pressing submit to signup
             navigate('/');
-            handleSignUpOrLogin(); //we are calling the prop in the very first function and setting the user
+// WHY THE FUCK DID THIS NOT WORK 
+            // handleSignUpOrLogin(); 
+//we are calling the prop in the very first function and setting the user
         }catch(err){
             console.log(err, 'error in handleSubmit');
             setError('Check your terminal and chrome console!')
         }
     };
-
-    function handleFileInput(e){
-        setFileInput(e.target.files[0])
-    }
 
     return(
         <Grid textAlign="center" style={{height: "100vh"}} verticalAlign="middle">
