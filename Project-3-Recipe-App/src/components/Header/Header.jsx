@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function PageHeader({user, handleLogout}){
     return(
-        <Segment>
+        <Segment clearing style={{backgroundColor: '#ddad61'}}>
             <Header as='h2' floated="left">
                 <Link to={`/${user?.username}`}>
                 <Image 
@@ -15,14 +15,16 @@ export default function PageHeader({user, handleLogout}){
                         avatar
                 ></Image>
                 </Link>
-            <Header floated="center" textAlign="center">Recipe Bank</Header>
             </Header>
-            <Header as='h2' floated="right">
+            <Header as='h1' floated="center" style={{color:"white"}}>
+                Recipe Bank
+            </Header>
+            <Header as='h2' floated="right" className="figures">
                 <Link to="/">
-                    <Icon name="home"></Icon>
+                    <Icon name="home" style={{color:"white"}}></Icon>
                 </Link>
                 <Link to="" onClick={handleLogout}>
-                    <Icon name='sign-out' />
+                    <Icon name="sign-out" style={{color:"white"}}></Icon>
                 </Link>
             </Header>
         </Segment>
