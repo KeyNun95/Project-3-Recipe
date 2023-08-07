@@ -34,6 +34,12 @@ export default function RecipeForm({handleAddPost}){
         formData.append('photo', selectedFile)
         //call prop handleAddPost to call our postApi.create function
         handleAddPost(formData)
+        setState({
+            recipeTitle: '',
+            ingredientList: '',
+            direction: '',
+        })
+        setSelectedFile('')
     }
 //STEP 1: set up UI
     return(

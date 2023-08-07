@@ -16,7 +16,7 @@ Trello: https://trello.com/b/sOhNLrDh/project-3-mern
 Miro: https://miro.com/app/board/uXjVMxqLmZg=/
 
 NEXT STEPS
-For the future, there are several features I would like to add, such as
+For the future, there are several features I would like to add,nom such as
 -redirect the posts to open to a seperate page where the user can see the full directions and ingredient list of each recipe
 -add an update function to post so users can edit their recipes
 -add a save function on posts so users can save their favorite recipes and access the folder on a separate page on their profile
