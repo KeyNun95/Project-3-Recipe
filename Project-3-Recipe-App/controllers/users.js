@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
+const Post = require('../models/post')
 
 //helps generate random numbers for filename so every file is unique
 //uuid is the name of the module, and uuidv4 is the name of the funciton we are importing
@@ -21,7 +22,7 @@ async function profile(req, res) {
   try{
     const user = await User.findOne({username:req.params.username})
     if(!user) return res.status(404).json({error: 'User not found'})
-    const posts = await post.find({user: user._id}).populate("user").exec();
+    const posts = await Post.find({user: user._id}).populate("user").exec();
     console.log(posts, 'this posts')
     res.status(200).json({posts: posts, user: user})
   }catch(err){
@@ -53,6 +54,7 @@ async function signup(req, res) {
       const token = createJWT(user);
       res.json({ token }); //step 3 in the flow token-based authentication chart
     } catch (err) {
+      console.log(err)
       // Probably a duplicate email
       res.status(400).json(err);
     }

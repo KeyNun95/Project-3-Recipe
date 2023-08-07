@@ -18,7 +18,7 @@ async function create(req, res){
 
 async function deleteLike(req, res){
     try{
-        const post = await Post.findOne({'likes._id': req.params.id, 'likes.username':})
+        const post = await Post.findOne({'likes._id': req.params.id, 'likes.username': req.user.username})
         post.likes.remove(req.params.id)
         await post.save()
         res.json({data: 'like removed'})

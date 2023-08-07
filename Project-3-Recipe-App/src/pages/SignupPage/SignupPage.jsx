@@ -72,12 +72,13 @@ export default function SignUpPage(){
     };
 
     return(
-        <Grid textAlign="center" style={{height: "100vh"}} verticalAlign="middle">
-            <Grid.Column style={{ maxWidth: 450}}>
+        <Grid textAlign="center" style={{height: "100vh", backgroundColor:'#473939'}} verticalAlign="middle">
+            <Grid.Column style={{ maxWidth: 450, backgroundColor: '#ddad61'}}>
                 <Header>
+                    <h1>Recipe Bank</h1>
                 </Header>
                 <Form autoComplete="off" onSubmit={handleSubmit}>
-                    <Segment stacked>
+                    <Segment style={{backgroundColor: '#ddad61'}} stacked>
                         <Form.Input
                             name="username"
                             placeholder="username"
@@ -117,7 +118,7 @@ export default function SignUpPage(){
                                 onChange={handleFileInput}
                             />
                         </Form.Field>
-                        <Button type="submit" className="btn">
+                        <Button style={{backgroundColor:'red'}} type="submit" className="btn">
                             Signup
                         </Button>
                     </Segment>

@@ -2,7 +2,7 @@ import tokenService from "./tokenService";
 
 const BASE_URL = '/api/'
 
-export default function create(postId){
+export function create(postId){
     return fetch(`${BASE_URL}posts/${postId}/likes`, {
         method: 'POST',
         headers: {
@@ -14,7 +14,7 @@ export default function create(postId){
     })
 }
 
-export default function removeLike(likeId){
+export function removeLike(likeId){
     return fetch(`${BASE_URL}likes/${likeId}`, {
         method: 'DELETE',
         headers: {

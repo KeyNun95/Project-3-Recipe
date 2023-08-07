@@ -78,7 +78,7 @@ export default function FeedPage({user, handleLogout}){
         </Grid.Row>
         <Grid.Row>
             <Grid.Column style={{ maxWidth: 450 }}>
-                <RecipeGallery posts={posts} addLike={addLike} removeLike={removeLike} user={user}/>
+                <RecipeGallery posts={posts} addLike={addLike} removeLike={removeLike} user={user} itemsPerRow={1} isProfile={false}/>
             </Grid.Column>
         </Grid.Row>
     </Grid>

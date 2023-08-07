@@ -15,8 +15,12 @@ export default function PageHeader({user, handleLogout}){
                         avatar
                 ></Image>
                 </Link>
+            <Header floated="center" textAlign="center">Recipe Bank</Header>
             </Header>
             <Header as='h2' floated="right">
+                <Link to="/">
+                    <Icon name="home"></Icon>
+                </Link>
                 <Link to="" onClick={handleLogout}>
                     <Icon name='sign-out' />
                 </Link>
