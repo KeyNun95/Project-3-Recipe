@@ -62,7 +62,7 @@ export default function SignUpPage(){
             console.log(signUp)
             //navigate user to homepage after pressing submit to signup
             navigate('/');
-// WHY THE FUCK DID THIS NOT WORK 
+// Why is this not working
             // handleSignUpOrLogin(); 
 //we are calling the prop in the very first function and setting the user
         }catch(err){

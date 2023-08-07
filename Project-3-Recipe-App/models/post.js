@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 
+// const commentSchema = new Schema({
+//     content: {type: String},
+//     userId: {type: mongoose.Schema.Types.ObjectId},
+//     username: String
+// },{
+//     timestamps: true
+// });
+
 const likesSchema = mongoose.Schema({
     username: String,
     userId: { type: mongoose.Schema.Types.ObjectId }
@@ -11,7 +19,8 @@ const postSchema = new mongoose.Schema({
     ingredientList: String,
     direction: String,
     photoUrl: String,
-    likes: [likesSchema]
+    likes: [likesSchema],
+    // comments: [commentSchema]
 })
 
 module.exports = mongoose.model('Post', postSchema);
