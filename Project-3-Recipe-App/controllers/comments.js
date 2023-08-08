@@ -1,16 +1,18 @@
-// const Comment = require('../models/post');
+const Post = require('../models/post');
 
-// module.exports = {
-//     create
-// }
+module.exports = {
+    create
+}
 
-// async function create(req, res){
-//     try{
-//         const comment = await Comment.findById(req.params.id);
-//         comment.comments.push({username: req.user.username, userId: req.user._id});
-//         await comment.save()
-//         res.status(203).json({data: 'comment added'})
-//     }catch(err){
-//         res.status(400).json({err})
-//     }
-// }
+async function create(req, res){
+    console.log(req.body);
+    try{
+        const post = await Post.findById(req.params.id);
+        post.comments.push({username: req.user.username, userId: req.user._id, content: req.body.review.content});
+        await post.save()
+        console.log(post)
+        res.status(200).json({post})
+    }catch(err){
+        res.status(400).json({err})
+    }
+}

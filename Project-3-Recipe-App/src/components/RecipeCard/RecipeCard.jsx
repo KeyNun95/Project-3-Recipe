@@ -1,4 +1,5 @@
 import { Card, Icon, Image } from "semantic-ui-react"
+import CommentForm from "../CommentForm/CommentForm";
 
 export default function RecipeCard({post, addLike, removeLike, user, isProfile}){
     const likedIndex = post.likes.findIndex(like => like.username === user.username);
@@ -33,6 +34,9 @@ export default function RecipeCard({post, addLike, removeLike, user, isProfile})
         <Card.Content extra textAlign={"right"}>
             <Icon name={"heart"} size="large" color={likeColor} onClick={clickHandler} />
             {post.likes.length} Likes
+        </Card.Content>
+        <Card.Content>
+            <CommentForm post={post} user={user}/>
         </Card.Content>
         </Card>
     );

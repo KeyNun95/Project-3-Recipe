@@ -16,10 +16,10 @@ export default function PageHeader({user, handleLogout}){
                 ></Image>
                 </Link>
             </Header>
-            <Header as='h1' floated="center" style={{color:"white"}}>
+            <Header as='h1' textAlign="center" style={{color:"white"}}>
                 Recipe Bank
             </Header>
-            <Header as='h2' floated="right" className="figures">
+            <Header as='h2' floated="right">
                 <Link to="/">
                     <Icon name="home" style={{color:"white"}}></Icon>
                 </Link>
