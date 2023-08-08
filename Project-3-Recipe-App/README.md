@@ -15,7 +15,7 @@ TECHNOLOGIES USED
 -React
 
 GETTING STARTED
-Link to run:
+Link to run: http://localhost:8000/signup
 Trello: https://trello.com/b/sOhNLrDh/project-3-mern
 Miro: https://miro.com/app/board/uXjVMxqLmZg=/
 
